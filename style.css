@@ -1,78 +1,82 @@
 :root {
-  --primaryClr: rgb(222, 78, 78);
-  --secondary-Clr: beige;
-  --trClr: yellow;
-}
-body {
-  margin: 0;
-  font-size: 1.2rem;
+  --primaryClr: rgb(0, 41, 128);
+  --secondaryClr: rgb(57, 31, 247);
+  --trClr: rgb(0, 195, 255);
 }
 
+body {
+  margin: 0;
+  font-size: 1.1rem;
+}
 * {
   box-sizing: border-box;
 }
 
 .wrapper {
-  display: flex;
-  background: linear-gradient(rgb(9, 27, 50), rgb(0, 64, 128));
+  background: linear-gradient(var(--trClr), var(--primaryClr));
+
   min-height: 100vh;
+
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.calculator {
-  background: rgb(254, 254, 254);
+
+.calcualtor {
+  background: rgba(128, 128, 128, 0.683);
   width: 400px;
   padding: 2rem 1.5rem;
   border-radius: 10px;
+
   display: grid;
   gap: 1rem;
+  /* grid-template-columns: repeat(4, 1fr); */
   grid-template-areas:
     "display display display display"
     "ac c per divide"
-    "b7 b8 b9 multi"
-    "b6 b5 b4 minus"
-    "b3 b2 b1 plus"
+    "b7 b8 b9 x"
+    "b4 b5 b6 minus"
+    "b1 b2 b3 plus"
     "b0 dot ans ans";
 }
 
-.calculator .btn {
-  background: black;
+.calcualtor .btn {
+  background: var(--trClr);
   height: 50px;
 
   display: grid;
-  color: aliceblue;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.calculator .btn:hover {
-  background: red;
+.calcualtor .btn:hover {
+  background: var(--secondaryClr);
   cursor: pointer;
 }
+
 .display {
-  font-family: "Orbitron", sans-serif;
   grid-area: display;
+  background: var(--secondaryClr);
+  height: 50px;
 
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem;
-  height: 50px;
-  background: black;
-  color: white;
+  padding: 0.5rem;
 }
 
 .btn-ac {
   grid-area: ac;
 }
+
 .btn-c {
   grid-area: c;
 }
-.btn-per {
-  grid-area: per;
-}
 .btn-divide {
   grid-area: divide;
+}
+.btn-per {
+  grid-area: per;
 }
 .btn-7 {
   grid-area: b7;
@@ -83,8 +87,8 @@ body {
 .btn-9 {
   grid-area: b9;
 }
-.btn-multi {
-  grid-area: multi;
+.btn-x {
+  grid-area: x;
 }
 .btn-4 {
   grid-area: b4;
@@ -98,31 +102,24 @@ body {
 .btn-minus {
   grid-area: minus;
 }
-
 .btn-1 {
   grid-area: b1;
 }
-
 .btn-2 {
   grid-area: b2;
 }
-
 .btn-3 {
   grid-area: b3;
 }
-
 .btn-plus {
   grid-area: plus;
 }
-
 .btn-0 {
   grid-area: b0;
 }
-
-.btn-ans {
-  grid-area: ans;
-}
-
 .btn-dot {
   grid-area: dot;
+}
+.btn-ans {
+  grid-area: ans;
 }

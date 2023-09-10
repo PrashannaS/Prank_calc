@@ -1,44 +1,58 @@
 const allBtns = [...document.getElementsByClassName("btn")];
 
-let strTodisplay = "";
-const displayele = document.querySelector(".display");
-console.log(displayele);
+let strToDisplay = "";
 
-const operators = ["%"];
+const displaElm = document.querySelector(".display");
+console.log(displaElm);
 
-allBtns.map((btn) => {
-  console.log(btn);
+const operators = ["%", "/", "*", "+", "-"];
+
+allBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const val = btn.innerText;
 
     if (val === "AC") {
-      strTodisplay = "";
-      disply(strTodisplay);
+      strToDisplay = "";
+      disply(strToDisplay);
       return;
     }
 
     if (val === "C") {
-      strTodisplay = strTodisplay.slice(0, -1);
-      return disply(strTodisplay);
+      strToDisplay = strToDisplay.slice(0, -1);
+      return disply(strToDisplay);
     }
 
     if (val === "=") {
-      //   let result = eval(strTodisplay).toString();
+      const lastChar = strToDisplay[strToDisplay.length - 1];
+      if (operators.includes(lastChar)) {
+        //remove the last char from the strToDisplay
 
-      return total;
+        strToDisplay = strToDisplay.slice(0, -1);
+      }
+      return total();
     }
 
-    strTodisplay += val;
-    disply(strTodisplay);
+    if (operators.includes(val)) {
+      const lastChar = strToDisplay[strToDisplay.length - 1];
+
+      if (operators.includes(lastChar)) {
+        //remove the last char from the strToDisplay
+
+        strToDisplay = strToDisplay.slice(0, -1);
+      }
+    }
+
+    strToDisplay += val;
+    disply(strToDisplay);
   });
 });
 
 const disply = (str) => {
-  displayele.innerText = str || "0.00";
+  displaElm.innerText = str || "0.00";
 };
 
 const total = () => {
-  const ttl = eval(strTodisplay);
-
+  const ttl = eval(strToDisplay);
   disply(ttl);
+  strToDisplay = ttl.toString();
 };
