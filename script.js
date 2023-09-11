@@ -6,9 +6,15 @@ const displaElm = document.querySelector(".display");
 console.log(displaElm);
 
 const operators = ["%", "/", "*", "+", "-"];
+let Operator = "";
+const audio = new Audio("./audioo.wav");
 
 allBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
+    displaElm.style.background = "";
+    displaElm.style.color = "";
+    displaElm.classList.remove("prank");
+
     const val = btn.innerText;
 
     if (val === "AC") {
@@ -42,6 +48,18 @@ allBtns.forEach((btn) => {
       }
     }
 
+    if (val === ".") {
+      const indexOfLastOperator = strToDisplay.lastIndexOf(lastOperator);
+      const lastNumberSet = strToDisplay.slice(indexOfLastOperator);
+
+      if (lastNumberSet.includes(".")) {
+        return;
+      }
+
+      if (!lastOperator && strToDisplay.includes(".")) {
+        return;
+      }
+    }
     strToDisplay += val;
     disply(strToDisplay);
   });
@@ -52,7 +70,19 @@ const disply = (str) => {
 };
 
 const total = () => {
-  const ttl = eval(strToDisplay);
+  const extraVal = randomNumber();
+  if (extraVal) {
+    audio.play();
+    displaElm.style.background = "red";
+    displaElm.style.color = "white";
+    displaElm.classList.add("prank");
+  }
+  const ttl = eval(strToDisplay) + extraVal;
   disply(ttl);
   strToDisplay = ttl.toString();
+};
+
+const randomNumber = () => {
+  const num = Math.round(Math.random() * 10);
+  return num < 4 ? num : 0;
 };
